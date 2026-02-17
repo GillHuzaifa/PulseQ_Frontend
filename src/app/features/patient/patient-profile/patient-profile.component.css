@@ -1,0 +1,352 @@
+:host {
+    display: block;
+    padding: 1rem;
+    --primary: #2563eb;
+    --card-radius: 14px;
+    --card-bg: #fff;
+    --card-shadow: 0 12px 32px rgba(11, 19, 32, 0.12);
+    --muted: #6b7a85;
+}
+
+/* ================= TOP BAR ================= */
+.topbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem 1rem;
+    border-bottom: 1px solid #eef2f6;
+    background: #fff;
+    min-height: 40px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+}
+
+.brand {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.topnav {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.topnav a {
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #434d57;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.topnav a.active {
+    background: #eef6ff;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.topbar-right a {
+    text-decoration: none;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    background: #e9f0ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* ================= CONTAINER & LAYOUT ================= */
+.page {
+    min-height: 100vh;
+}
+
+.container {
+    padding: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.intro {
+    margin-bottom: 2rem;
+}
+
+.intro h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #0b1419;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* ================= PROFILE CARD ================= */
+:host ::ng-deep .profile-card .p-card {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    border: 1px solid #eef2f6;
+    box-shadow: var(--card-shadow);
+    padding: 2rem;
+}
+
+.profile-card {
+    margin-bottom: 2rem;
+}
+
+/* ================= PROFILE PICTURE SECTION ================= */
+.profile-picture-section {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eef2f6;
+}
+
+.avatar-circle {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    background: #eef6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.avatar-circle i {
+    font-size: 3rem;
+    color: #2563eb;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.avatar-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+:host ::ng-deep .avatar-actions .p-button-sm {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.85rem !important;
+}
+
+/* ================= PROFILE INFO SECTION ================= */
+.profile-info-section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: #0b1419;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.info-field:last-child {
+    border-bottom: none;
+}
+
+.field-label {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.field-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.field-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #0b1419;
+}
+
+.edit-btn {
+    color: var(--primary) !important;
+    padding: 0.25rem 0.5rem !important;
+    min-height: 28px !important;
+}
+
+.edit-btn:hover {
+    background: #eff6ff !important;
+}
+
+/* ================= SECURITY SECTION ================= */
+.security-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eef2f6;
+}
+
+.full-width {
+    width: 100% !important;
+}
+
+/* ================= LOGOUT SECTION ================= */
+.logout-section {
+    margin-top: 2rem;
+}
+
+/* ================= FORM STYLES ================= */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #0b1419;
+    font-size: 0.95rem;
+}
+
+.required {
+    color: #ef4444;
+}
+
+.w-full {
+    width: 100% !important;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+}
+
+.error-message span {
+    display: block;
+}
+
+/* ================= DIALOG STYLES ================= */
+:host ::ng-deep .p-dialog-header {
+    background: #fff !important;
+    border-bottom: 1px solid #eef2f6 !important;
+    padding: 1.5rem !important;
+}
+
+:host ::ng-deep .p-dialog-title {
+    font-weight: 700 !important;
+    color: #0b1419 !important;
+}
+
+:host ::ng-deep .p-dialog-content {
+    padding: 1.5rem !important;
+}
+
+:host ::ng-deep .p-dialog-footer {
+    background: #f9fafc;
+    border-top: 1px solid #eef2f6;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .intro h1 {
+        font-size: 1.5rem;
+    }
+
+    :host ::ng-deep .profile-card .p-card {
+        padding: 1.5rem;
+    }
+
+    .avatar-circle {
+        width: 100px;
+        height: 100px;
+    }
+
+    .avatar-placeholder {
+        font-size: 2.5rem;
+    }
+
+    .avatar-actions {
+        flex-direction: column;
+    }
+
+    :host ::ng-deep .avatar-actions .p-button-sm {
+        width: 100%;
+    }
+
+    .field-display {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .info-field {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* ================= COMPACT OVERRIDES ================= */
+.topbar { padding: 0.2rem 0.9rem; min-height: 36px; }
+.logo { width: 24px; height: 24px; }
+.avatar { width: 36px; height: 36px; font-size: 1rem; }
+.topnav a { padding: 0.2rem 0.45rem; font-size: 0.9rem; }
+.intro h1 { font-size: 1.6rem; }

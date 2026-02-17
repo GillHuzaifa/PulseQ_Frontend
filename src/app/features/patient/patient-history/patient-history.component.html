@@ -1,0 +1,75 @@
+<header class="topbar">
+    <div class="topbar-left">
+        <img src="assets/logo.jpeg" alt="PulseQ" class="logo" />
+        <div class="brand">PulseQ</div>
+    </div>
+
+    <nav class="topnav">
+        <a routerLink="/patient/dashboard">Dashboard</a>
+        <a routerLink="/patient/new-token">New Token</a>
+        <a routerLink="/patient/live-status">Live Status</a>
+        <a routerLink="/patient/my-token">My Token</a>
+        <a routerLink="/patient/history" class="active">History</a>
+    </nav>
+    <div class="topbar-right">
+        <a routerLink="/patient/notifications" class="icon-btn" aria-label="Notifications">
+            <i class="pi pi-bell" aria-hidden="true"></i>
+        </a>
+        <a routerLink="/patient/profile" class="avatar" title="Profile"><i class="pi pi-user"
+                aria-hidden="true"></i></a>
+    </div>
+</header>
+
+<main class="page">
+    <div class="container">
+        <section class="intro">
+            <h1>Visit History</h1>
+            <p class="subtitle">View your past consultations and medical records</p>
+        </section>
+
+        <section class="history-list">
+            <div class="history-card">
+                <div class="history-card-header">
+                    <div class="title">Past Visits</div>
+                    <div class="subtitle-sm">{{ visits.length }} visits found</div>
+                </div>
+
+                <div class="visit-items">
+                    <a class="visit-item" *ngFor="let v of visits" [routerLink]="['/patient/history', v.id]">
+                        <div class="visit-left">
+                            <div class="avatar-circle">S</div>
+                        </div>
+                        <div class="visit-body">
+                            <div class="visit-top">
+                                <div class="doctor">{{ v.doctor }}</div>
+                                <div class="specialty">{{ v.specialty }}</div>
+                            </div>
+
+                            <div class="visit-meta">
+                                <div class="meta-col">
+                                    <i class="pi pi-calendar meta-icon" aria-hidden="true"></i>
+                                    <span class="meta-text">{{ v.date }}</span>
+                                </div>
+                                <div class="meta-col">
+                                    <i class="pi pi-clock meta-icon" aria-hidden="true"></i>
+                                    <span class="meta-text">{{ v.time }}</span>
+                                </div>
+                            </div>
+
+                            <div class="reason">Reason: {{ v.reason }}</div>
+                            <div class="badges">
+                                <span class="token-badge">Token: {{ v.token }}</span>
+                                <span class="notes-badge" *ngIf="v.hasNotes">Has Notes</span>
+                            </div>
+                        </div>
+
+                        <div class="visit-right">›</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="callout">Click on any visit to view detailed consultation notes and complete medical records.
+            </div>
+        </section>
+    </div>
+</main>

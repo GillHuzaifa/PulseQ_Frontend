@@ -1,0 +1,95 @@
+<header class="topbar">
+    <div class="topbar-left">
+        <img src="assets/logo.jpeg" alt="PulseQ" class="logo" />
+        <div class="brand">PulseQ</div>
+    </div>
+
+    <nav class="topnav">
+        <a routerLink="/patient/dashboard">Dashboard</a>
+        <a routerLink="/patient/new-token">New Token</a>
+        <a routerLink="/patient/live-status">Live Status</a>
+        <a routerLink="/patient/my-token">My Token</a>
+        <a routerLink="/patient/history" class="active">History</a>
+    </nav>
+
+    <div class="topbar-right">
+        <a routerLink="/patient/notifications" class="p-button-text" aria-label="Notifications">
+            <i class="pi pi-bell" aria-hidden="true"></i>
+        </a>
+        <a routerLink="/patient/profile" class="avatar" title="Profile"><i class="pi pi-user"
+                aria-hidden="true"></i></a>
+    </div>
+</header>
+
+<main class="page">
+    <div class="container">
+        <section class="intro">
+            <h1>Visit Details</h1>
+            <p class="subtitle">Complete information about your consultation</p>
+        </section>
+
+        <section class="detail-card">
+            <div class="card-top">
+                <div class="doc-left">
+                    <div class="avatar-big">S</div>
+                    <div class="doc-info">
+                        <div class="doc-name">{{ visit?.doctor }}</div>
+                        <div class="doc-spec">{{ visit?.specialty }}</div>
+                        <div class="doc-room">Room 101</div>
+                    </div>
+                </div>
+                <div class="token-box">TOKEN<br /><span class="token-number">{{ visit?.token }}</span></div>
+            </div>
+
+            <div class="card-body">
+                <div class="meta-row">
+                    <div class="meta-card">
+                        <div class="meta-label">VISIT DATE</div>
+                        <div class="meta-value">{{ visit?.date }}</div>
+                    </div>
+                    <div class="meta-card">
+                        <div class="meta-label">VISIT TIME</div>
+                        <div class="meta-value">{{ visit?.time }}</div>
+                    </div>
+                </div>
+
+                <div class="patient-box">
+                    <div class="patient-label">PATIENT INFORMATION</div>
+                    <div class="patient-row">
+                        <div>
+                            <div class="muted">Name</div>
+                            <div class="strong">{{ visit?.patientName }}</div>
+                        </div>
+                        <div>
+                            <div class="muted">Age / Gender</div>
+                            <div class="strong">{{ visit?.ageGender }}</div>
+                        </div>
+                        <div>
+                            <div class="muted">Phone</div>
+                            <div class="strong">{{ visit?.phone }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reason-section">
+                    <div class="muted">REASON FOR VISIT</div>
+                    <div class="reason-text">{{ visit?.reason }}</div>
+                </div>
+
+                <div class="notes-section">
+                    <div class="muted">CONSULTATION NOTES</div>
+                    <div class="notes-text">{{ visit?.notes }}</div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="visit-id">Visit ID: z-4</div>
+                    <div class="status-badge">{{ visit?.status }}</div>
+                </div>
+            </div>
+
+            <div class="back-btn-wrap">
+                <a routerLink="/patient/history" class="back-btn">← Back to All Visits</a>
+            </div>
+        </section>
+    </div>
+</main>

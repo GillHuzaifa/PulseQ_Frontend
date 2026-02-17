@@ -1,0 +1,102 @@
+<div class="notifications-page">
+    <header class="topbar">
+        <div class="topbar-left">
+            <img src="assets/logo.jpeg" alt="PulseQ" class="logo" />
+            <div class="brand">PulseQ</div>
+        </div>
+
+        <nav class="topnav">
+            <a routerLink="/patient/dashboard">Dashboard</a>
+            <a routerLink="/patient/new-token">New Token</a>
+            <a routerLink="/patient/live-status">Live Status</a>
+            <a routerLink="/patient/my-token">My Token</a>
+            <a routerLink="/patient/history">History</a>
+        </nav>
+
+        <div class="topbar-right">
+            <a pButton type="button" icon="pi pi-bell" class="p-button-text" routerLink="/patient/notifications"
+                aria-label="Notifications"></a>
+            <a routerLink="/patient/profile" class="avatar" title="Profile"><i class="pi pi-user"
+                    aria-hidden="true"></i></a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div>
+            <h1>Notifications</h1>
+            <p class="subtitle">Manage your updates and preferences.</p>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button [class.active]="activeTab === 'inbox'" (click)="activeTab = 'inbox'">Inbox</button>
+        <button [class.active]="activeTab === 'settings'" (click)="activeTab = 'settings'">Settings</button>
+    </div>
+
+    <div class="content-wrap">
+        <div *ngIf="activeTab === 'inbox'" class="inbox">
+            <div class="inbox-card">
+                <div class="card-top">
+                    <div class="card-title">Recent Updates</div>
+                    <a class="mark-read" (click)="markAllRead()">Mark all read</a>
+                </div>
+
+                <div class="notifications-list">
+                    <div *ngFor="let n of notifications" class="notification-item" [class.read]="n.read">
+                        <div class="icon">
+                            <i [class]="n.type === 'success' ? 'pi pi-check-circle' : 'pi pi-info-circle'"></i>
+                        </div>
+                        <div class="body">
+                            <div class="title">{{ n.title }}</div>
+                            <div class="message">{{ n.message }}</div>
+                        </div>
+                        <div class="time">{{ n.time }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="activeTab === 'settings'" class="settings">
+            <div class="settings-card">
+                <div class="card-top">
+                    <div class="card-title"><i class="pi pi-bell"></i> Notification Channels</div>
+                </div>
+
+                <div class="setting-row">
+                    <div class="setting-icon"><i class="pi pi-bell"></i></div>
+                    <div class="setting-info">
+                        <div class="setting-title">In-App Notifications</div>
+                        <div class="setting-sub">Receive updates within the PulseQ app</div>
+                    </div>
+                    <p-inputSwitch [(ngModel)]="settings.inApp" (onChange)="toggleSetting('inApp')"></p-inputSwitch>
+                </div>
+
+                <div class="setting-row">
+                    <div class="setting-icon"><i class="pi pi-mobile"></i></div>
+                    <div class="setting-info">
+                        <div class="setting-title">SMS Alerts</div>
+                        <div class="setting-sub">Get text messages for urgent updates</div>
+                    </div>
+                    <p-inputSwitch [(ngModel)]="settings.sms" (onChange)="toggleSetting('sms')"></p-inputSwitch>
+                </div>
+
+                <div class="setting-row">
+                    <div class="setting-icon"><i class="pi pi-comment"></i></div>
+                    <div class="setting-info">
+                        <div class="setting-title">WhatsApp Updates</div>
+                        <div class="setting-sub">Receive token status via WhatsApp</div>
+                    </div>
+                    <p-inputSwitch [(ngModel)]="settings.whatsapp"
+                        (onChange)="toggleSetting('whatsapp')"></p-inputSwitch>
+                </div>
+
+                <div class="info-note">
+                    <i class="info-icon pi pi-info-circle"></i>
+                    <span>Enabling external notifications (SMS/WhatsApp) will allow the hospital to send you real-time
+                        updates about your queue position, estimated wait time, and room number. Standard messaging
+                        rates may apply for SMS.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="landing-container">
+    <div class="logo">
+        <img src="assets/logo.jpeg" alt="Logo">
+    </div>
+
+    <h1 class="title">PulseQ</h1>
+    <p class="subtitle">
+        Digital Queue System for Healthcare. Select your role to continue.
+    </p>
+
+    <!-- Cards -->
+    <div class="card-grid">
+
+        <p-card class="role-card" (click)="goTo('patient')">
+            <div class="icon patient">
+                <i class="pi pi-user"></i>
+            </div>
+            <h3 class="head">Patient</h3>
+            <p>Get tokens & track status</p>
+        </p-card>
+
+        <p-card class="role-card" (click)="goTo('reception')">
+            <div class="icon reception">
+                <i class="pi pi-clipboard"></i>
+            </div>
+            <h3 class="head">Reception</h3>
+            <p>Manage queue & tokens</p>
+        </p-card>
+
+        <p-card class="role-card" (click)="goTo('doctor')">
+            <div class="icon doctor">
+                <i class="pi pi-heart"></i>
+            </div>
+            <h3 class="head">Doctor</h3>
+            <p>View & call patients</p>
+        </p-card>
+
+        <div class="role-card" (click)="goTo('admin')" role="button" tabindex="0" (keyup.enter)="goTo('admin')">
+            <p-card>
+                <div class="icon admin">
+                    <i class="pi pi-shield"></i>
+                </div>
+                <h3 class="head">Admin</h3>
+                <p>System controls & stats</p>
+            </p-card>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        PulseQ v1.0 • Designed for Hospital Workflows
+    </footer>
+
+</div>

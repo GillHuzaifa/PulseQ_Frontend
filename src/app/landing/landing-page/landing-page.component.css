@@ -1,0 +1,105 @@
+.landing-container {
+    min-height: 100vh;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: #f9fafb;
+}
+
+.logo img {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    border-radius: 12px;
+    display: block;
+}
+
+.title {
+    margin-top: 1rem;
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.subtitle {
+    color: #6b7280;
+    margin-bottom: 3rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.head{
+    color:#000000;
+    font-size: 18px;
+    font-weight: 600;
+}
+@media (max-width: 900px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+    }
+}
+
+.role-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 48px;
+}
+
+.role-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon i {
+    font-size: 30px;
+    line-height: 1;
+    display: block;
+}
+
+.patient {
+    background: #e0edff;
+    color: #2563eb;
+}
+
+.reception {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.doctor {
+    background: #e0e7ff;
+    color: #6366f1;
+}
+
+.admin {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.footer {
+    margin-top: 4rem;
+    font-size: 0.9rem;
+    color: #9ca3af;
+}
+

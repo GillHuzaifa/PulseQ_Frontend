@@ -1,0 +1,100 @@
+<div class="page">
+    <p-toast position="top-right"></p-toast>
+
+    <div class="auth-container">
+        <div class="brand-section">
+            <img src="assets/logo.jpeg" alt="PulseQ" class="brand-logo" />
+            <h1 class="brand-name">PulseQ</h1>
+            <p class="brand-tagline">Patient Portal</p>
+        </div>
+
+        <!-- authentication cardd-->
+        <p-card class="auth-card" [ngClass]="{'signup': !isLoginMode}">
+            <h2 class="auth-title">Patient {{ isLoginMode ? 'Login' : 'Signup' }}</h2>
+            <p class="auth-subtitle">{{ isLoginMode ? 'Sign in to get your token' : 'Create an account to request
+                tokens' }}</p>
+
+            <form [formGroup]="authForm" (ngSubmit)="submit()" class="auth-form">
+                <!-- Name (signup) -->
+                <div class="form-group" *ngIf="!isLoginMode">
+                    <label for="name" class="form-label">Full Name <span class="required">*</span></label>
+                    <input pInputText type="text" id="name" formControlName="name" placeholder="Dr. Jane Doe"
+                        class="w-full" />
+                    <div class="error-message" *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)">
+                        <span *ngIf="f['name'].errors?.['required']">Name is required</span>
+                    </div>
+                </div>
+
+                <!-- Phone (signup) -->
+                <div class="form-group" *ngIf="!isLoginMode">
+                    <label for="phone" class="form-label">Phone Number <span class="required">*</span></label>
+                    <input pInputText type="tel" id="phone" formControlName="phone" placeholder="0712345678"
+                        class="w-full" />
+                    <div class="error-message" *ngIf="f['phone'].invalid && (f['phone'].dirty || f['phone'].touched)">
+                        <span *ngIf="f['phone'].errors?.['required']">Phone is required</span>
+                        <span *ngIf="f['phone'].errors?.['pattern']">Enter a valid phone number</span>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+                    <input pInputText type="email" id="email" formControlName="email" placeholder="dr.name@hospital.com"
+                        class="w-full" />
+                    <div class="error-message" *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)">
+                        <span *ngIf="f['email'].errors?.['required']">Email is required</span>
+                        <span *ngIf="f['email'].errors?.['email']">Please enter a valid email</span>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password" class="form-label">Password <span class="required">*</span></label>
+                    <input pInputText [type]="showPassword ? 'text' : 'password'" id="password"
+                        formControlName="password" placeholder="Enter your password" class="w-full" />
+                    <div class="show-toggle">
+                        <label><input type="checkbox" (change)="showPassword = !showPassword" /> Show password</label>
+                    </div>
+                    <div class="error-message"
+                        *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+                        <span *ngIf="f['password'].errors?.['required']">Password is required</span>
+                        <span *ngIf="!isLoginMode && f['password'].errors?.['minlength']">Password must be at least 6
+                            characters</span>
+                        <span *ngIf="!isLoginMode && f['password'].errors?.['pattern']">Password must include uppercase,
+                            lowercase and a digit</span>
+                    </div>
+                </div>
+
+                <!-- Confirm Password (signup) -->
+                <div class="form-group" *ngIf="!isLoginMode">
+                    <label for="confirmPassword" class="form-label">Confirm Password <span
+                            class="required">*</span></label>
+                    <input pInputText [type]="showPassword ? 'text' : 'password'" id="confirmPassword"
+                        formControlName="confirmPassword" placeholder="Repeat your password" class="w-full" />
+                    <div class="error-message"
+                        *ngIf="(f['confirmPassword'].invalid && (f['confirmPassword'].dirty || f['confirmPassword'].touched)) || authForm.errors?.['mismatch']">
+                        <span *ngIf="f['confirmPassword'].errors?.['required']">Confirm password is required</span>
+                        <span *ngIf="authForm.errors?.['mismatch']">Passwords do not match</span>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="auth-switch-above">
+                    <a class="switch-link" (click)="toggleMode()">{{ isLoginMode ? 'New user? Sign up' : 'Already have
+                        an account? Login' }}</a>
+                </div>
+
+                <div class="form-actions">
+                    <button pButton [label]="isLoginMode ? 'Login' : 'Sign Up'" type="submit" class="login-btn"
+                        [disabled]="authForm.invalid">
+                    </button>
+                </div>
+            </form>
+
+            <!-- Back Link -->
+            <div class="back-section">
+                <a class="back-link" (click)="goBack()"><i class="pi pi-arrow-left"></i> Back to Home</a>
+            </div>
+        </p-card>
+    </div>
+</div>

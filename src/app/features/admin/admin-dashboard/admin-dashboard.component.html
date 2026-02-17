@@ -1,0 +1,275 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="pi pi-shield"></i>
+            <span>Admin Panel</span>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a routerLink="/admin/overview" routerLinkActive="active" class="menu-item"
+                [routerLinkActiveOptions]="{ exact: false }">
+                <i class="pi pi-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a routerLink="/admin/doctors" routerLinkActive="active" class="menu-item"
+                [routerLinkActiveOptions]="{ exact: false }">
+                <i class="pi pi-users"></i>
+                <span>Doctors</span>
+            </a>
+            <a routerLink="/admin/departments" routerLinkActive="active" class="menu-item"
+                [routerLinkActiveOptions]="{ exact: false }">
+                <i class="pi pi-building"></i>
+                <span>Departments</span>
+            </a>
+            <a routerLink="/admin/statistics" routerLinkActive="active" class="menu-item"
+                [routerLinkActiveOptions]="{ exact: false }">
+                <i class="pi pi-chart-bar"></i>
+                <span>Statistics</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button (click)="signOut()" class="signout-btn">
+                <i class="pi pi-sign-out"></i>
+                <span>Sign Out</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- HEADER -->
+        <div class="admin-header">
+            <div>
+                <h1>System Overview</h1>
+                <p class="subtitle">Welcome back, Admin.</p>
+            </div>
+            <div class="tab-switches">
+                <a class="tab-btn" routerLink="/admin/overview" routerLinkActive="active" (click)="setActiveTab(0)"
+                    [class.active]="activeTab === 0">Overview</a>
+                <a class="tab-btn" routerLink="/admin/doctors" routerLinkActive="active" (click)="setActiveTab(1)"
+                    [class.active]="activeTab === 1">Doctors</a>
+                <a class="tab-btn" routerLink="/admin/departments" routerLinkActive="active" (click)="setActiveTab(2)"
+                    [class.active]="activeTab === 2">Departments</a>
+                <a class="tab-btn" routerLink="/admin/statistics" routerLinkActive="active" (click)="setActiveTab(3)"
+                    [class.active]="activeTab === 3">Statistics</a>
+            </div>
+        </div>
+
+        <!-- TAB 0: OVERVIEW -->
+        <div *ngIf="activeTab === 0" class="tab-content">
+            <!-- METRIC CARDS -->
+            <div class="metrics-grid">
+                <div *ngFor="let metric of metrics" class="metric-card">
+                    <div class="metric-icon" [style.backgroundColor]="metric.bgColor">
+                        <i [class]="'pi ' + metric.icon"></i>
+                    </div>
+                    <div class="metric-info">
+                        <div class="metric-label">{{metric.label}}</div>
+                        <div class="metric-value">{{metric.value}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENT ROW -->
+            <div class="content-row">
+                <!-- CHART -->
+                <div class="chart-container">
+                    <p-card class="chart-card">
+                        <ng-template pTemplate="header">
+                            <div class="card-header">Patient Flow (Today)</div>
+                        </ng-template>
+                        <p-chart type="bar" [data]="chartData" [options]="chartOptions"
+                            [style]="{'height': '300px'}"></p-chart>
+                    </p-card>
+                </div>
+
+                <!-- LOGS -->
+                <div class="logs-container">
+                    <p-card class="logs-card">
+                        <ng-template pTemplate="header">
+                            <div class="card-header">Live System Logs</div>
+                        </ng-template>
+                        <div class="logs-list">
+                            <div *ngFor="let log of logEntries" class="log-item">
+                                <div class="log-dot"></div>
+                                <div class="log-message">{{log.message}}</div>
+                                <div class="log-time">{{log.time}}</div>
+                            </div>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 1: DOCTORS -->
+        <div *ngIf="activeTab === 1" class="tab-content">
+            <div class="doctors-header">
+                <h2>Manage Doctors</h2>
+                <button pButton icon="pi pi-plus" label="Add Doctor" class="add-btn"
+                    (click)="openAddDoctorDialog()"></button>
+            </div>
+
+            <p-card class="doctors-card">
+                <p-table [value]="doctors">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>NAME</th>
+                            <th>DEPARTMENT</th>
+                            <th>ROOM</th>
+                            <th>STATUS</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-doctor>
+                        <tr>
+                            <td class="name-cell">{{doctor.name}}</td>
+                            <td>{{doctor.department}}</td>
+                            <td>{{doctor.room}}</td>
+                            <td>
+                                <span
+                                    [class]="'status-badge status-' + (doctor.status === 'Available' ? 'available' : 'offline')">
+                                    <i
+                                        [class]="'pi ' + (doctor.status === 'Available' ? 'pi-check-circle' : 'pi-circle')"></i>
+                                    {{doctor.status}}
+                                </span>
+                            </td>
+                            <td class="actions-cell">
+                                <button pButton icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-text p-button-sm action-edit" title="Edit"
+                                    (click)="openEditDoctorDialog(doctor)"></button>
+                                <button pButton icon="pi pi-trash"
+                                    class="p-button-rounded p-button-text p-button-sm action-delete" title="Delete"
+                                    (click)="confirmDelete(doctor)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p-card>
+
+            <!-- Add Doctor Dialog -->
+            <p-dialog [(visible)]="showAddDoctorDialog" [modal]="true" header="Add Doctor" [style]="{width: '500px'}"
+                (onHide)="closeAddDoctorDialog()">
+                <div class="dialog-form" *ngIf="showAddDoctorDialog">
+                    <div class="form-group">
+                        <label>Doctor Name *</label>
+                        <input pInputText [(ngModel)]="newDoctorForm.name" [ngModelOptions]="{updateOn: 'blur'}"
+                            placeholder="Enter doctor name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Department *</label>
+                        <p-dropdown [(ngModel)]="newDoctorForm.department" [options]="departmentOptions"
+                            placeholder="Select department"></p-dropdown>
+                    </div>
+                    <div class="form-group">
+                        <label>Room Number *</label>
+                        <input pInputText [(ngModel)]="newDoctorForm.room" [ngModelOptions]="{updateOn: 'blur'}"
+                            placeholder="e.g., 101" />
+                    </div>
+                    <div class="form-group checkbox">
+                        <p-checkbox [(ngModel)]="newDoctorForm.available" [binary]="true"
+                            label="Available"></p-checkbox>
+                    </div>
+                </div>
+
+                <ng-template pTemplate="footer">
+                    <button pButton type="button" label="Cancel" (click)="closeAddDoctorDialog()"
+                        class="p-button-secondary"></button>
+                    <button pButton type="button" label="Add Doctor" (click)="addDoctor()"
+                        class="p-button-success"></button>
+                </ng-template>
+            </p-dialog>
+
+            <!-- Edit Doctor Dialog -->
+            <p-dialog [(visible)]="showEditDoctorDialog" [modal]="true" header="Edit Doctor" [style]="{width: '500px'}"
+                (onHide)="closeEditDoctorDialog()">
+                <div class="dialog-form" *ngIf="editDoctorForm && showEditDoctorDialog">
+                    <div class="form-group">
+                        <label>Doctor Name *</label>
+                        <input pInputText [(ngModel)]="editDoctorForm.name" [ngModelOptions]="{updateOn: 'blur'}"
+                            placeholder="Enter doctor name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Department *</label>
+                        <p-dropdown [(ngModel)]="editDoctorForm.department" [options]="departmentOptions"
+                            placeholder="Select department"></p-dropdown>
+                    </div>
+                    <div class="form-group">
+                        <label>Room Number *</label>
+                        <input pInputText [(ngModel)]="editDoctorForm.room" [ngModelOptions]="{updateOn: 'blur'}"
+                            placeholder="e.g., 101" />
+                    </div>
+                    <div class="form-group checkbox">
+                        <p-checkbox [(ngModel)]="editDoctorForm.available" [binary]="true"
+                            label="Available"></p-checkbox>
+                    </div>
+                </div>
+
+                <ng-template pTemplate="footer">
+                    <button pButton type="button" label="Cancel" (click)="closeEditDoctorDialog()"
+                        class="p-button-secondary"></button>
+                    <button pButton type="button" label="Save Changes" (click)="saveEditDoctor()"
+                        class="p-button-success"></button>
+                </ng-template>
+            </p-dialog>
+        </div>
+
+        <!-- TAB 2: DEPARTMENTS -->
+        <div *ngIf="activeTab === 2" class="tab-content">
+            <div class="departments-header">
+                <h2>Manage Departments</h2>
+                <button pButton icon="pi pi-plus" label="Add Department" class="add-btn"
+                    (click)="openAddDeptDialog()"></button>
+            </div>
+
+            <div class="departments-grid">
+                <div *ngFor="let dept of departments" class="department-card">
+                    <div class="dept-content">
+                        <i class="pi pi-building dept-icon"></i>
+                        <div class="dept-name">{{dept.name}}</div>
+                    </div>
+                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-sm dept-delete"
+                        title="Delete" (click)="confirmDeleteDepartment(dept)"></button>
+                </div>
+            </div>
+
+            <!-- Add Department Dialog -->
+            <p-dialog [(visible)]="showAddDeptDialog" [modal]="true" header="Add Department" [style]="{width: '450px'}"
+                (onHide)="closeAddDeptDialog()">
+                <div class="dialog-form" *ngIf="showAddDeptDialog">
+                    <div class="form-group">
+                        <label>Department Name *</label>
+                        <input pInputText [(ngModel)]="newDeptForm.name" [ngModelOptions]="{updateOn: 'blur'}"
+                            placeholder="Enter department name" />
+                    </div>
+                </div>
+
+                <ng-template pTemplate="footer">
+                    <button pButton type="button" label="Cancel" (click)="closeAddDeptDialog()"
+                        class="p-button-secondary"></button>
+                    <button pButton type="button" label="Add Department" (click)="addDepartment()"
+                        class="p-button-success"></button>
+                </ng-template>
+            </p-dialog>
+        </div>
+
+        <!-- TAB 3: STATISTICS -->
+        <div *ngIf="activeTab === 3" class="tab-content">
+            <div style="padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                <h2 style="font-size: 1.5rem; color: #1f2937; margin-bottom: 2rem;">System Statistics</h2>
+                <p-card>
+                    <ng-template pTemplate="header">
+                        <div style="width: 100%; height: 400px;">
+                            <p-chart type="bar" [data]="chartData" [options]="chartOptions"
+                                [style]="{'height': '100%'}"></p-chart>
+                        </div>
+                    </ng-template>
+                </p-card>
+            </div>
+        </div>
+    </main>
+</div>

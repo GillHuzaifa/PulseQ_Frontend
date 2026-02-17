@@ -1,0 +1,93 @@
+<div class="page">
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <img src="assets/logo.jpeg" alt="PulseQ" class="logo" />
+            <div class="brand">PulseQ</div>
+        </div>
+
+        <nav class="topnav">
+            <a routerLink="/patient/dashboard" class="active">Dashboard</a>
+            <a routerLink="/patient/new-token">New Token</a>
+            <a routerLink="/patient/live-status">Live Status</a>
+            <a routerLink="/patient/my-token">My Token</a>
+            <a routerLink="/patient/history">History</a>
+        </nav>
+
+        <div class="topbar-right">
+            <a pButton type="button" icon="pi pi-bell" class="p-button-text" routerLink="/patient/notifications"
+                aria-label="Notifications"></a>
+            <a routerLink="/patient/profile" class="avatar" title="Profile">
+                <i class="pi pi-user" aria-hidden="true"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="intro">
+            <div>
+                <h1>Welcome, Patient</h1>
+                <p class="subtitle">Here is your current queue status.</p>
+            </div>
+
+            <button pButton label="Generate New Token" icon="pi pi-plus" class="generate" (click)="goGenerateToken()">
+            </button>
+        </div>
+
+        <!--current active token-->
+        <section class="grid" *ngIf="activeToken">
+            <div class="col">
+                <p-card class="left-card">
+                    <div class="token-header">
+                        <span class="token-label">YOUR TOKEN</span>
+                    </div>
+
+                    <div class="token-number">{{ activeToken.tokenNumber }}</div>
+                    <div class="status-badge">
+                        <span class="dot pending"></span> {{ activeToken.status }}
+                    </div>
+
+                    <div class="meta">
+                        <div>
+                            <div class="meta-label">Estimated Wait</div>
+                            <div>{{ estimatedWait }}</div>
+                        </div>
+                        <div>
+                            <div class="meta-label">Queue Position</div>
+                            <div>{{ queuePosition }}</div>
+                        </div>
+                    </div>
+
+                    <a class="view-link" (click)="viewToken()">View Full Ticket</a>
+                </p-card>
+            </div>
+
+            <div class="col">
+                <p-card>
+                    <div class="serving">
+                        <h3>Currently Serving</h3>
+                        <div class="serving-token">{{ currentServing.tokenNumber }}</div>
+                        <div>{{ currentServing.department }} • {{ currentServing.room }}</div>
+                    </div>
+                </p-card>
+            </div>
+
+            <div class="col">
+                <p-card class="dark updates">
+                    <h3>Hospital Updates</h3>
+                    <p class="updates-text">{{ hospitalUpdates }}</p>
+                    <a class="live-link" (click)="viewLiveStatus()">View Live Screen →</a>
+                </p-card>
+            </div>
+        </section>
+
+        <!--when no token is generated (EMPTY STATE)-->
+        <section class="empty-state" *ngIf="!activeToken">
+            <div class="empty-state-content">
+                <i class="pi pi-inbox empty-icon"></i>
+                <h2 class="empty-title">No Active Token</h2>
+                <p class="empty-subtitle">You don't have an active token. Generate a new token to proceed.</p>
+            </div>
+        </section>
+    </main>
+</div>

@@ -1,0 +1,295 @@
+
+/* ================= TOP BAR ================= */
+:host{display:block;padding:1rem;--primary:#2563eb;--card-radius:14px;--card-bg:#fff;--card-shadow:0 12px 32px rgba(11,19,32,.12);--muted:#6b7a85}
+.topbar{position:sticky;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0.5rem 1.25rem;background:#ffffff;border-bottom:1px solid #eef2f7;min-height:64px}
+.topbar-left{display:flex;align-items:center;gap:.5rem}
+.logo{width:36px;height:36px;border-radius:8px}
+.brand{font-weight:700;font-size:1.05rem}
+.topnav{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;gap:1.25rem;align-items:center}
+.topnav a{padding:0.45rem 0.9rem;border-radius:999px;cursor:pointer;color:#434d57;font-size:1rem;font-weight:600;text-decoration:none;transition:background-color 0.15s ease,color 0.15s ease}
+.topnav a.active{background:rgba(37,99,235,0.12);color:var(--primary);box-shadow:0 4px 12px rgba(37,99,235,0.08)}
+.topbar-right{display:flex;align-items:center;gap:0.6rem}.topbar-right a{text-decoration:none}
+.avatar{width:36px;height:36px;background:#eef6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.95rem}
+.topbar .p-button-text{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px}
+:host{display:block;padding:1rem;--primary:#2563eb;--card-radius:14px;--card-bg:#fff;--card-shadow:0 12px 32px rgba(11,19,32,.12);--muted:#6b7a85}.topbar{display:flex;align-items:center;justify-content:space-between;padding:.3rem 1rem;border-bottom:1px solid #eef2f6;background:#fff;min-height:40px}.topbar-left{display:flex;align-items:center;gap:.5rem}.logo{width:28px;height:28px;border-radius:6px}.brand{font-weight:600;font-size:1rem}.topnav{display:flex;gap:.75rem}.topnav a{padding:.25rem .5rem;border-radius:6px;cursor:pointer;color:#434d57;font-size:.95rem;font-weight:500;text-decoration:none}.topnav a.active{background:#eef6ff;color:var(--primary);font-weight:600}.topbar-right{display:flex;align-items:center;gap:.6rem}.avatar{width:36px;height:36px;background:#e9f0ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:1rem;cursor:pointer;text-decoration:none!important}.page{min-height:100vh}.container{padding:1.5rem}.intro{margin-bottom:2rem}h1{font-size:2rem;font-weight:700;margin-bottom:.5rem;color:#0b1419}.subtitle{color:var(--muted);font-size:.95rem}.form-wrapper{max-width:600px;margin:0 auto}.alert{border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;border:0;box-shadow:0 2px 8px rgba(37,99,235,.08)}.alert-primary{background:linear-gradient(135deg,#eff6ff,#dbeafe);color:#1e40af;border-left:4px solid #2563eb}.alert-wrapper{display:flex;gap:1rem;align-items:flex-start}.alert-icon{font-size:1.5rem;color:#2563eb;flex-shrink:0;margin-top:.1rem}.alert-content{flex:1}.alert-title{display:block;font-size:.95rem;font-weight:700;color:#1e40af;margin-bottom:.35rem}.alert-message{margin:0;font-size:.9rem;line-height:1.6;color:#1e3a8a}
+
+.page {
+    min-height: 100vh
+}
+
+.container {
+    padding: 0.5rem
+}
+
+.intro {
+    margin-bottom: 2rem
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+    color: #0b1419
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: .95rem
+}
+
+.form-wrapper {
+    max-width: 600px;
+    margin: 0 auto
+}
+
+.alert {
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    border: 0;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, .08)
+}
+
+.alert-primary {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    color: #1e40af;
+    border-left: 4px solid #2563eb
+}
+
+.alert-wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start
+}
+
+.alert-icon {
+    font-size: 1.5rem;
+    color: #2563eb;
+    flex-shrink: 0;
+    margin-top: .1rem
+}
+
+.alert-content {
+    flex: 1
+}
+
+.alert-title {
+    display: block;
+    font-size: .95rem;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: .35rem
+}
+
+.alert-message {
+    margin: 0;
+    font-size: .9rem;
+    line-height: 1.6;
+    color: #1e3a8a
+}
+
+.notifications-page {
+  padding: 0 2rem 2rem 2rem;
+}
+.page-header h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+  color: #0f172a;
+  margin-top: 1.5rem;
+}
+.page-header .subtitle {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+.tabs button {
+  background: none;
+  border: none;
+  padding: 0.4rem 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.tabs button.active {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+}
+
+.content-wrap {
+  max-width: 700px;
+  width: 100%;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inbox-card,
+.settings-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(2,6,23,0.06);
+  border: 1px solid #f0f1f3;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #eef2ff;
+}
+.card-title { 
+  font-weight: 700; 
+  color: #111827;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.card-title i {
+  color: #2563eb;
+}
+.mark-read { 
+  color: #2563eb; 
+  cursor: pointer; 
+  font-weight: 600;
+  font-size: 0.9rem; 
+}
+
+.notifications-list { 
+  padding: 0; 
+}
+.notification-item { 
+  display: flex; 
+  gap: 1rem; 
+  align-items: flex-start; 
+  padding: 0.875rem 1.25rem; 
+  border-bottom: 1px solid #f3f4f6; 
+}
+.notification-item.read { 
+  opacity: 0.6; 
+}
+.notification-item .icon { 
+  width: 32px; 
+  height: 32px; 
+  border-radius: 50%; 
+  background: #eef2ff; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  color: #2563eb;
+  flex-shrink: 0;
+}
+.notification-item .body { 
+  flex: 1; 
+}
+.notification-item .title { 
+  font-weight: 700; 
+  color: #111827;
+  font-size: 0.95rem; 
+}
+.notification-item .message { 
+  color: #6b7280; 
+  margin-top: 0.25rem;
+  font-size: 0.85rem; 
+}
+.notification-item .time { 
+  color: #9ca3af; 
+  white-space: nowrap;
+  font-size: 0.8rem; 
+}
+
+.setting-row { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 1rem 1.25rem; 
+  border-bottom: 1px solid #f3f4f6;
+  gap: 1rem;
+}
+.setting-row:last-child:not(.info-note) {
+  border-bottom: none;
+}
+.setting-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+.setting-row:nth-child(2) .setting-icon {
+  background: #dbeafe;
+  color: #2563eb;
+}
+.setting-row:nth-child(3) .setting-icon {
+  background: #e0e7ff;
+  color: #4f46e5;
+}
+.setting-row:nth-child(4) .setting-icon {
+  background: #d1fae5;
+  color: #059669;
+}
+.setting-info { 
+  flex: 1;
+}
+.setting-info .setting-title { 
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #111827;
+}
+.setting-info .setting-sub { 
+  color: #6b7280; 
+  margin-top: 0.25rem;
+  font-size: 0.85rem; 
+}
+
+.info-note { 
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: #eef2ff;
+  border-radius: 8px;
+  color: #1e40af;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-top: 1px solid #f3f4f6;
+}
+.info-icon {
+  flex-shrink: 0;
+  color: #2563eb;
+  font-size: 1rem;
+  margin-top: 0.1rem;
+}
+.info-note span {
+  flex: 1;
+}
+
+
+.topbar { padding: 0.2rem 0.9rem; min-height: 36px; }
+.logo { width: 24px; height: 24px; }
+.avatar { width: 36px; height: 36px; font-size: 1rem; }
+.topnav a { padding: 0.2rem 0.45rem; font-size: 0.9rem; }
+.container { padding: 1rem; }
+.page-header h1 { font-size: 1.6rem; }
+.tabs button { font-size: 0.9rem; }
+.card-top { padding: 0.75rem 1rem; }
+.notification-item { padding: 0.6rem 1rem; }
+.notification-item .icon { width: 28px; height: 28px; }
+.setting-row { padding: 0.75rem 1rem; }
+.setting-icon { width: 34px; height: 34px; font-size: 1.05rem; }
+.setting-info .setting-title { font-size: 0.92rem; }
+.setting-info .setting-sub { font-size: 0.8rem; }
+.info-note { padding: 0.75rem 1rem; font-size: 0.88rem; }

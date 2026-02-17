@@ -1,0 +1,234 @@
+:host {
+    display: block;
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --card-bg: #ffffff;
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --border-color: #e2e8f0;
+}
+
+.history-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.history-header h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+
+.history-header .subtitle {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0 0;
+}
+
+.back-btn {
+    background: var(--primary) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 0.65rem 1.25rem !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+}
+
+.back-btn:hover {
+    background: #1d4ed8 !important;
+}
+
+.patient-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: #6b7280;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: #d1d5db;
+    margin-bottom: 1rem;
+}
+
+.patient-group-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+}
+
+.patient-group-header {
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #f0f9ff 100%);
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.patient-group-header:hover {
+    background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+}
+
+.patient-group-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.patient-group-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.patient-group-name i {
+    font-size: 0.875rem;
+    transition: transform 0.2s ease;
+}
+
+.visit-count {
+    background: var(--primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.consultations-list {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.no-visits {
+    text-align: center;
+    padding: 2rem;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.consultation-item {
+    padding: 1rem;
+    background: #f9fafb;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.consultation-header {
+    margin-bottom: 0.75rem;
+}
+
+.visit-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.token-badge {
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+}
+
+.visit-date {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.consultation-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.detail-row {
+    display: flex;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #4b5563;
+    min-width: 80px;
+}
+
+.detail-value {
+    color: #1f2937;
+    flex: 1;
+}
+
+.consultation-notes {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.notes-label {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.notes-content {
+    color: #374151;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.no-notes {
+    padding: 1rem;
+    background: #f9fafb;
+    border: 1px dashed var(--border-color);
+    border-radius: 6px;
+    color: #9ca3af;
+    text-align: center;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.no-notes i {
+    font-size: 1.25rem;
+}

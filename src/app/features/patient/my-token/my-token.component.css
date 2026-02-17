@@ -1,0 +1,54 @@
+:root {
+	--patient-primary: #2563eb;
+}
+
+/* Unified patient topbar styles (centered pill nav) */
+.topbar {
+	position: sticky;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 1.25rem;
+	background: #ffffff;
+	border-bottom: 1px solid #eef2f7;
+	min-height: 64px;
+}
+:host{display:block;padding:1rem;--primary:#2563eb;--card-radius:14px;--card-bg:#fff;--card-shadow:0 12px 32px rgba(11,19,32,.12);--muted:#6b7a85}.topbar{display:flex;align-items:center;justify-content:space-between;padding:.3rem 1rem;border-bottom:1px solid #eef2f6;background:#fff;min-height:40px}.topbar-left{display:flex;align-items:center;gap:.5rem}.logo{width:28px;height:28px;border-radius:6px}.brand{font-weight:600;font-size:1rem}.topnav{display:flex;gap:.75rem}.topnav a{padding:.25rem .5rem;border-radius:6px;cursor:pointer;color:#434d57;font-size:.95rem;font-weight:500;text-decoration:none}.topnav a.active{background:#eef6ff;color:var(--primary);font-weight:600}.topbar-right{display:flex;align-items:center;gap:.6rem}.topbar-right a{text-decoration:none}.avatar{width:36px;height:36px;background:#e9f0ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:1rem;cursor:pointer;text-decoration:none!important}.page{min-height:100vh}.container{padding:1.5rem}.intro{margin-bottom:2rem}.intro h1{font-size:2rem;font-weight:700;margin-bottom:.5rem;color:#0b1419}.subtitle{color:var(--muted);font-size:.95rem}
+
+.token-wrapper{max-width:800px;margin:0 auto}:host ::ng-deep .token-card .p-card{padding:0;background:var(--card-bg);border-radius:var(--card-radius);border:1px solid #eef2f6;box-shadow:var(--card-shadow);overflow:visible;position:relative}:host ::ng-deep .token-card .p-card::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--primary),#1e5fe0);border-radius:14px 14px 0 0;z-index:1}.card-inner{padding:2rem 2rem 2rem 2rem}.token-section{text-align:center;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid #eef2f6}.token-label{font-size:.85rem;color:var(--muted);font-weight:600;letter-spacing:.5px;margin-bottom:.5rem}.token-number{font-size:3.5rem;font-weight:800;color:#0b1419;margin-bottom:1rem;line-height:1}.status-badge{display:inline-block;padding:.4rem .8rem;border-radius:6px;font-size:.8rem;font-weight:700;letter-spacing:.5px}.status-badge.pending{background:#dbeafe;color:#1e40af}.status-badge.serving{background:#dcfce7;color:#166534}.status-badge.skipped{background:#fee2e2;color:#991b1b}
+
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}.info-block{display:flex;flex-direction:column}.info-label{font-size:.75rem;color:var(--muted);font-weight:700;letter-spacing:.5px;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}.info-label i{font-size:.9rem}.info-value{font-size:1rem;font-weight:700;color:#0b1419;margin-bottom:.25rem}.info-secondary{font-size:.85rem;color:var(--muted)}.reason-section{padding:1rem;background:#f9fafc;border-radius:8px}.reason-text{font-size:.9rem;color:#434d57;line-height:1.6;margin-top:.5rem}.action-buttons{display:flex;gap:1rem;justify-content:center;padding-top:1.5rem;border-top:1px solid #eef2f6}.btn-save,.btn-leave{color:#fff!important;border-radius:8px!important;font-weight:600!important;padding:.75rem 1.5rem!important;flex:1}.btn-save{background-color:var(--primary)!important;border-color:var(--primary)!important}:host ::ng-deep .btn-save:hover{background-color:#1d4ed8!important}.btn-leave{background-color:#ef4444!important;border-color:#ef4444!important}:host ::ng-deep .btn-leave:hover{background-color:#dc2626!important}
+
+.no-token-section{max-width:500px;margin:3rem auto;text-align:center}.no-token-icon{font-size:4rem;color:#cbd5e1;margin-bottom:1rem}.no-token-title{font-size:1.8rem;font-weight:700;color:#0b1419;margin-bottom:.5rem}.no-token-text{font-size:.95rem;color:var(--muted);margin-bottom:2rem;line-height:1.6}.btn-generate{background-color:var(--primary)!important;border-color:var(--primary)!important;color:#fff!important;border-radius:8px!important;font-weight:600!important;padding:.75rem 2rem!important}:host ::ng-deep .btn-generate:hover{background-color:#1d4ed8!important}@media(max-width:700px){.info-grid{grid-template-columns:1fr;gap:1.5rem}.action-buttons{flex-direction:column}.token-number{font-size:2.5rem}.card-inner{padding:1.5rem}}
+.patient-details{background:#fbfdff;border:1px solid #eef6ff;padding:1rem;border-radius:10px}
+.patient-details h4{margin:0 0 .5rem 0}
+.detail-row{display:flex;gap:1.5rem;margin-bottom:.5rem}
+
+/* Override token label to match 'Currently Serving' header size */
+:host ::ng-deep .token-label {
+	font-size: 1.1rem !important;
+	color: #0b1419 !important;
+	font-weight: 700 !important;
+	letter-spacing: 0 !important;
+	margin-bottom: 0.5rem !important;
+}
+/* Remove underline from View Full Ticket link */
+.view-link {
+  text-decoration: none;
+}
+
+/* Compact overrides: slightly smaller token UI */
+.topbar { padding: 0.2rem 0.9rem; min-height: 36px; }
+.logo { width: 24px; height: 24px; }
+.avatar { width: 36px; height: 36px; font-size: 1rem; }
+.topnav a { padding: 0.2rem 0.45rem; font-size: 0.9rem; }
+.container { padding: 1rem; }
+.intro h1 { font-size: 1.6rem; }
+.token-number { font-size: 3rem; }
+.card-inner { padding: 1.6rem; }
+.no-token-icon { font-size: 3.2rem; }
+.no-token-title { font-size: 1.5rem; }

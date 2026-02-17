@@ -1,0 +1,291 @@
+:host {
+    display: block;
+    --primary: #2563eb;
+    --muted: #6b7a85;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+:root {
+	--patient-primary: #2563eb;
+}
+
+/* Unified patient topbar styles (centered pill nav) */
+
+:host{display:block;padding:1rem;--primary:#2563eb;--card-radius:14px;--card-bg:#fff;--card-shadow:0 12px 32px rgba(11,19,32,.12);--muted:#6b7a85}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.25rem;border-bottom:1px solid #eef2f6;background:#fff;min-height:40px}
+.topbar-left{display:flex;align-items:center;gap:.5rem}
+.logo{width:28px;height:28px;border-radius:6px}
+.brand{font-weight:600;font-size:1rem}
+.topnav{display:flex;gap:.75rem}
+.topnav a{padding:.25rem .5rem;border-radius:6px;cursor:pointer;color:#434d57;font-size:.95rem;font-weight:500;text-decoration:none}
+.topnav a.active{background:#eef6ff;color:var(--primary);font-weight:600}
+.topbar-right{display:flex;align-items:center;gap:.6rem;padding-right:.75rem}
+.topbar-right a{text-decoration:none}
+.topbar-right .pi.pi-bell, .topbar-right .pi-bell{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;color:var(--primary);font-size:1rem;cursor:pointer}
+.avatar{width:36px;height:36px;background:#e9f0ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:1rem;cursor:pointer;text-decoration:none!important}.page{min-height:100vh}.container{padding:1.5rem}.intro{margin-bottom:2rem}.intro h1{font-size:2rem;font-weight:700;margin-bottom:.5rem;color:#0b1419}.subtitle{color:var(--muted);font-size:.95rem}
+
+/* =========================
+   PAGE STRUCTURE
+========================= */
+
+.page {
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.intro h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: #0b1419;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* ========================= */
+/* .icon-btn {
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    text-decoration: none;
+    color: inherit;
+}
+.icon-btn .pi {
+    font-size: 18px;
+} */
+  /* DETAIL CARD
+========================= */
+
+.detail-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e6ecf2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-top: 1.5rem;
+}
+
+/* TOP SECTION */
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem;
+    background: #e0edff;
+    border-bottom: 1px solid #eef2f6;
+}
+
+.doc-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar-big {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.doc-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.doc-spec {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+}
+
+.doc-room {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+}
+
+.token-box {
+    background: #ffffff;
+    border: 1px solid #e6ecf2;
+    padding: 0.6rem 0.85rem;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.token-number {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* BODY */
+
+.card-body {
+    padding: 1.2rem;
+}
+
+/* DATE & TIME */
+
+.meta-row {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.meta-card {
+    flex: 1;
+    background: #f8fafc;
+    border: 1px solid #e6ecf2;
+    padding: 0.9rem;
+    border-radius: 10px;
+}
+
+.meta-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+}
+
+.meta-value {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* PATIENT BOX */
+
+.patient-box {
+    background: #f8fafc;
+    border: 1px solid #e6ecf2;
+    padding: 0.9rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.patient-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+}
+
+.patient-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.muted {
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.strong {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* REASON */
+
+.reason-section {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #eef2f6;
+    border-radius: 10px;
+}
+
+.reason-text {
+    margin-top: 0.5rem;
+    font-size: 0.88rem;
+}
+
+/* NOTES */
+
+.notes-section {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background: #eef4ff;
+}
+
+.notes-text {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* FOOTER */
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.visit-id {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.status-badge {
+    background: #dcfce7;
+    color: #166534;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* BACK BUTTON */
+
+.back-btn-wrap {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid #eef2f6;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #e6ecf2;
+    color: #334155;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+/* .back{
+    text-decoration: none;
+    color: rgb(70, 70, 70);
+    font-weight: 500;
+} */

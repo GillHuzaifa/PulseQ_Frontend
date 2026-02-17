@@ -1,0 +1,303 @@
+:root{
+    --patient-primary: #2563eb;
+}
+
+/* Unified patient topbar styles (centered pill nav) */
+.topbar{
+    position:sticky;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0.5rem 1.25rem;background:#ffffff;border-bottom:1px solid #eef2f7;min-height:64px
+}
+.topbar-left{display:flex;align-items:center;gap:0.5rem}
+.logo{width:36px;height:36px;border-radius:8px}
+.brand{font-weight:700;font-size:1.05rem}
+.topnav{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;gap:1.25rem;align-items:center}
+.topnav a{padding:0.45rem 0.9rem;border-radius:999px;cursor:pointer;color:#434d57;font-size:1rem;font-weight:600;text-decoration:none;transition:background-color 0.15s ease,color 0.15s ease}
+.topnav a.active{background:rgba(37,99,235,0.12);color:var(--patient-primary);box-shadow:0 4px 12px rgba(37,99,235,0.08)}
+.topbar-right{display:flex;align-items:center;gap:0.6rem}.topbar-right a{text-decoration:none}
+.avatar{width:36px;height:36px;background:#eef6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.95rem}
+.topbar .p-button-text{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px}
+
+/* ================= ROOT ================= */
+:host {
+    display: block;
+    padding: 1rem;
+
+    --primary: #2563eb;
+    --card-radius: 14px;
+    --card-bg: #ffffff;
+    --card-shadow: 0 12px 32px rgba(11, 19, 32, 0.12);
+    --muted: #6b7a85;
+}
+
+/* ================= TOP BAR ================= */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem 1rem;
+    border-bottom: 1px solid #eef2f6;
+    background: white;
+    min-height: 40px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+}
+
+.brand {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.topnav {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.topnav a {
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #434d57;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.topnav a.active {
+    background: #eef6ff;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    background: #e9f0ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* ================= CONTAINER ================= */
+.page {
+    min-height: 100vh;
+}
+
+.container {
+    padding: 2rem 1.5rem;
+}
+
+.intro {
+    margin-bottom: 2rem;
+}
+
+.intro h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #0b1419;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* ================= TRACKING WRAPPER ================= */
+.tracking-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.tracking-card {
+    max-width: 600px;
+    width: 100%;
+}
+
+::ng-deep .tracking-card .p-card-body {
+    padding: 2rem;
+}
+
+/* ================= TIMER SECTION ================= */
+.timer-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.circular-timer {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3f7ff 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.status-indicator {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 12px;
+    height: 12px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.timer-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.timer-label {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* ================= QUEUE STATUS ================= */
+.queue-status {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.queue-message {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0b1419;
+    margin: 0 0 0.5rem 0;
+}
+
+.current-serving {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin: 0;
+}
+
+.current-serving strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ================= PROGRESS SECTION ================= */
+.progress-section {
+    margin-top: 2rem;
+}
+
+.progress-bar-wrapper {
+    margin-bottom: 1rem;
+}
+
+.progress-bar-container {
+    height: 6px;
+    background: #eef2f6;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.position {
+    color: #0b1419;
+    font-weight: 500;
+}
+
+.expected-time {
+    color: var(--muted);
+    font-weight: 500;
+}
+
+/* ================= ALERT ================= */
+.alert-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.alert {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    border: 1px solid #fcd34d;
+    background-color: #fffbeb;
+    color: #92400e;
+    font-weight: 500;
+    max-width: 500px;
+}
+
+.alert-warning {
+    background-color: #fffbeb;
+    border-color: #fcd34d;
+    color: #92400e;
+}
+
+.alert i {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* ================= TRACKING CARD ================= */
+:host ::ng-deep .tracking-card .p-card {
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    border: 1px solid #eef2f6;
+    box-shadow: var(--card-shadow);
+}
+
+.tracking-content {
+    text-align: center;
+    color: var(--muted);
+}
+
+/* Compact overrides: slightly reduce sizes for live status */
+.topbar { padding: 0.2rem 0.9rem; min-height: 36px; }
+.logo { width: 24px; height: 24px; }
+.avatar { width: 36px; height: 36px; font-size: 1rem; }
+.intro h1 { font-size: 1.6rem; }
+.container { padding: 1.5rem 1.25rem; }
+.circular-timer { width: 130px; height: 130px; }
+.timer-value { font-size: 2.2rem; }
+.progress-bar-container { height: 5px; }

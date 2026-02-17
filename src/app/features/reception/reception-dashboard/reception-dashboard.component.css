@@ -1,0 +1,435 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
+    font-family: Inter, system-ui;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    background: #fff;
+    border-right: 1px solid #e5e7eb;
+    padding: 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+.brand-icon {
+    color: #059669;
+    font-size: 1.3rem;
+}
+
+.nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav li {
+    list-style: none;
+    padding: 0.6rem 0.5rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 0.75rem;
+    cursor: pointer;
+    color: #4b5563;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.nav li:hover {
+    background: #f3f4f6;
+}
+
+.nav li.active {
+    background: #dcfce7;
+    color: #065f46;
+    font-weight: 600;
+}
+
+.nav i {
+    width: 20px;
+}
+
+.signout {
+    margin-top: auto;
+    cursor: pointer;
+    padding: 0.6rem 0.5rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+    display: flex;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.signout:hover {
+    color: #1f2937;
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    padding: 1.25rem 1.75rem;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.header-row h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #1f2937;
+}
+
+.subtitle {
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.controls {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.controls :deep(.p-dropdown) {
+    width: 180px;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.25rem;
+}
+
+/* SERVING */
+.serving-card {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 16px;
+}
+
+.serving-header {
+    color: #64748b;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.badge {
+    background: #dcfce7;
+    color: #166534;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+}
+
+.token {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0.5rem 0;
+}
+
+.patient-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+}
+
+.patient-meta {
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+}
+
+.serving-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.complete-btn {
+    background: #1e3a8a !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    flex: 1;
+}
+
+.complete-btn:hover {
+    background: #1e3a8a !important;
+}
+
+.skip-btn {
+    background: transparent !important;
+    border: 1px solid #1f2937 !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.85rem !important;
+    color: #1f2937 !important;
+    box-shadow: none !important;
+    flex: 1;
+}
+
+.skip-btn:hover {
+    background: #fee2e2 !important;
+    border-color: #dc2626 !important;
+    color: #dc2626 !important;
+}
+
+.secondary-btn {
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.85rem !important;
+}
+
+.walkin-btn {
+    background: #047857 !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1.25rem !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+
+.walkin-btn:hover {
+    background: #047857 !important;
+}
+
+/* STATS */
+.summary-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.summary-box {
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.label {
+    font-size: 0.7rem;
+    color: #64748b;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #050911;
+    margin-top: 0.5rem;
+}
+
+/* RIGHT */
+.upcoming-card,
+.active-doctors {
+    border-radius: 16px;
+}
+
+.upcoming-card {
+    padding: 1rem;
+}
+
+.upcoming-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.count {
+    color: #6b7280;
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+.list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.index {
+    width: 28px;
+    height: 28px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.token-id {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #0f172a;
+}
+
+.info {
+    text-align: left;
+    flex: 1;
+}
+
+.small {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.1rem;
+}
+
+.time {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.active-doctors {
+    padding: 1rem;
+    margin-top: 0.75rem;
+}
+
+.active-doctors .header {
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+
+.doctor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #1f2937;
+}
+
+.doctor span {
+    color: #6b7280;
+    font-size: 0.8rem;
+}
+
+/* WALK-IN FORM SPACING */
+.label{
+    color: #475569;
+    cursor: pointer;
+}
+
+.walkin-form {
+    padding: 1rem 1.25rem;
+}
+.walkin-form :deep(.p-field) {
+    margin-bottom: 2rem !important;
+}
+
+.walkin-form :deep(.p-field label) {
+    display: block;
+    margin-bottom: 0.8rem;
+    margin-top: 0.6rem;
+    font-weight: 700;
+    color: #0b1419;
+}
+
+.walkin-form .checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem !important;
+}
+
+.walkin-form :deep(.p-inputtext),
+.walkin-form :deep(.p-inputtextarea),
+.walkin-form :deep(.p-dropdown) {
+    width: 100%;
+    padding: 1rem 1rem !important;
+    font-size: 1rem;
+    line-height: 1.25;
+}
+
+.walkin-form :deep(.p-field) input,
+.walkin-form :deep(.p-field) textarea {
+    margin-top: 0.4rem;
+}
+
+/* make two-column grid rows more spacious (targets inline-styled grid rows) */
+.walkin-form div[style*="grid-template-columns"] {
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.walkin-form :deep(.p-inputtextarea) {
+    min-height: 120px !important;
+}
+
+/* Required field indicator */
+.required-asterisk {
+    color: #dc2626;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* Error message styling */
+.error-message {
+    color: #dc2626;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    font-weight: 500;
+}
+
+/* Invalid input styling */
+.walkin-form :deep(.ng-invalid) {
+    border-color: #fca5a5 !important;
+    background-color: #fff7f7 !important;
+}
+
+.walkin-form :deep(.ng-invalid:focus) {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1) !important;
+}

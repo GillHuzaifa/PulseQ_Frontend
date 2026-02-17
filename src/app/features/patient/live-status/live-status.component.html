@@ -1,0 +1,71 @@
+<div class="page">
+    <header class="topbar">
+        <div class="topbar-left">
+            <img src="assets/logo.jpeg" alt="PulseQ" class="logo" />
+            <div class="brand">PulseQ</div>
+        </div>
+
+        <nav class="topnav">
+            <a routerLink="/patient/dashboard">Dashboard</a>
+            <a routerLink="/patient/new-token">New Token</a>
+            <a routerLink="/patient/live-status" class="active">Live Status</a>
+            <a routerLink="/patient/my-token">My Token</a>
+            <a routerLink="/patient/history">History</a>
+        </nav>
+
+        <div class="topbar-right">
+            <a pButton type="button" icon="pi pi-bell" class="p-button-text" routerLink="/patient/notifications"
+                aria-label="Notifications"></a>
+            <a routerLink="/patient/profile" class="avatar" title="Profile"><i class="pi pi-user"
+                    aria-hidden="true"></i></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="intro">
+            <h1>Live Status Tracking</h1>
+            <p class="subtitle">Real-time updates for your token.</p>
+        </div>
+
+        <!--  no token -->
+        <div class="alert-wrapper" *ngIf="!hasToken">
+            <div class="alert alert-warning">
+                <i class="pi pi-exclamation-triangle"></i>
+                <span>You don't have an active token to track.</span>
+            </div>
+        </div>
+
+        <!-- when theres an active token -->
+        <div *ngIf="hasToken" class="tracking-wrapper">
+            <p-card class="tracking-card">
+                <!--  timer along w status -->
+                <div class="timer-section">
+                    <div class="circular-timer">
+                        <div class="status-indicator"></div>
+                        <div class="timer-value">{{ estimatedWaitMinutes }}</div>
+                        <div class="timer-label">min</div>
+                    </div>
+                </div>
+
+                <!-- Queue Status -->
+                <div class="queue-status">
+                    <p class="queue-message">You are in queue</p>
+                    <p class="current-serving">Current Token Serving: <strong>{{ currentServingToken }}</strong></p>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-section">
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" [style.width.%]="progressPercentage"></div>
+                        </div>
+                    </div>
+                    <div class="progress-info">
+                        <span class="position">Position {{ queuePosition }}</span>
+                        <span class="expected-time">Expected {{ expectedTime }}</span>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </main>
+</div>

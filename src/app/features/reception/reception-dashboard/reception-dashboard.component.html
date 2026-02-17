@@ -1,0 +1,264 @@
+<p-toast position="top-right"></p-toast>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="pi pi-clipboard brand-icon"></i>
+            <span>Reception</span>
+        </div>
+
+        <nav class="nav">
+            <ul>
+                <li [class.active]="currentNav === 'dashboard'" (click)="navigateTo('dashboard')">
+                    <i class="pi pi-th-large"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li [class.active]="currentNav === 'queue'" (click)="navigateTo('queue')">
+                    <i class="pi pi-list"></i>
+                    <span>Queue List</span>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="signout" (click)="signOut()">
+            <i class="pi pi-sign-out"></i> Sign Out
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <div class="header-row">
+            <div>
+                <h2>Reception Dashboard</h2>
+                <p class="subtitle">Manage patient flow and tokens.</p>
+            </div>
+
+            <div class="controls">
+                <!-- department filter removed per request -->
+                <button pButton icon="pi pi-plus" label="Walk-in Patient" class="walkin-btn"
+                    (click)="showWalkIn = true">
+                </button>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <!-- LEFT -->
+            <div class="content-left">
+
+                <!-- NOW SERVING -->
+                <p-card class="serving-card">
+                    <div class="serving-header">
+                        TOKEN NUMBER
+                        <span class="badge">NOW SERVING</span>
+                    </div>
+
+                    <div *ngIf="current">
+                        <div class="token">{{ current.token }}</div>
+                        <div class="patient-name">{{ current.name }}</div>
+                        <div class="patient-meta">
+                            {{ current.age }} yrs • {{ current.gender }} • {{ current.reason }}
+                        </div>
+
+                        <div class="serving-actions">
+                            <!-- <button pButton icon="pi pi-play" label="Complete & Next" class="complete-btn"
+                                (click)="completeCurrent()">
+                            </button> -->
+
+                            <button pButton icon="pi pi-forward" label="Skip" class="skip-btn" (click)="skipCurrent()">
+                            </button>
+                        </div>
+                    </div>
+                </p-card>
+
+                <!-- STATS -->
+                <div class="summary-row">
+                    <div class="summary-box">
+                        <div class="label">WAITING</div>
+                        <div class="value">{{ waitingCount }}</div>
+                    </div>
+
+                    <div class="summary-box">
+                        <div class="label">COMPLETED</div>
+                        <div class="value">{{ completedCount }}</div>
+                    </div>
+
+                    <div class="summary-box">
+                        <div class="label">SKIPPED</div>
+                        <div class="value">{{ skippedCount }}</div>
+                    </div>
+
+                    <div class="summary-box">
+                        <div class="label">AVG WAIT</div>
+                        <div class="value">{{ avgWait }} min</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <aside class="content-right">
+
+                <!-- UPCOMING -->
+                <p-card class="upcoming-card">
+                    <div class="upcoming-header">
+                        Upcoming Queue
+                        <span class="count">{{ upcoming.length }} patients</span>
+                    </div>
+
+                    <div class="list">
+                        <div class="list-item" *ngFor="let p of upcoming; let i = index">
+                            <div class="index">{{ i + 1 }}</div>
+                            <div class="info">
+                                <div class="token-id">{{ p.token }}</div>
+                                <div class="small">{{ p.name }} • {{ p.age }}y</div>
+                            </div>
+                            <div class="time">15m</div>
+                        </div>
+                    </div>
+                </p-card>
+
+                <!-- DOCTORS -->
+                <p-card class="active-doctors">
+                    <div class="header"><i class="pi pi-heart"></i> Active Doctors</div>
+                    <div class="doctor">
+                        Dr. Sarah Khan
+                        <span>Room 102</span>
+                    </div>
+                </p-card>
+
+            </aside>
+        </div>
+    </main>
+</div>
+
+<!-- WALK IN DIALOG -->
+<p-dialog header="New Walk-in Patient" [(visible)]="showWalkIn" [modal]="true" [style]="{ width: '560px' }">
+    <div class="p-fluid walkin-form">
+        <!-- Department -->
+        <div class="p-field">
+            <label class="label">Department <span class="required-asterisk">*</span></label>
+            <p-dropdown [options]="departments" [(ngModel)]="walkIn.department"
+                (onBlur)="walkInTouched['department'] = true"></p-dropdown>
+            <div class="error-message" *ngIf="walkInTouched['department'] && !walkIn.department">
+                Department is required
+            </div>
+        </div>
+
+        <!-- Select Doctor -->
+        <div class="p-field">
+            <label class="label">Select Doctor</label>
+            <p-dropdown [options]="doctors" [(ngModel)]="walkIn.doctor"
+                [disabled]="walkIn.assignAnyDoctor"></p-dropdown>
+        </div>
+
+        <!-- Assign any available doctor checkbox -->
+        <div class="p-field checkbox-field">
+            <p-checkbox [(ngModel)]="walkIn.assignAnyDoctor" [binary]="true"></p-checkbox>
+            <label style="margin: 10px; color: #475569; cursor: pointer;">Assign any available doctor</label>
+        </div>
+
+        <!-- Patient Name -->
+        <div class="p-field">
+            <label class="label">Patient Name <span class="required-asterisk">*</span></label>
+            <input type="text" pInputText [(ngModel)]="walkIn.name" placeholder="Enter patient name"
+                (onBlur)="walkInTouched['name'] = true" (input)="walkInTouched['name'] = true"
+                [ngClass]="{'ng-invalid': walkInTouched['name'] && !isNameValid(walkIn.name)}" />
+            <div class="error-message" *ngIf="walkInTouched['name'] && walkIn.name && hasNumbersInName(walkIn.name)">
+                Name cannot contain numbers
+            </div>
+            <div class="error-message" *ngIf="walkInTouched['name'] && !walkIn.name">
+                Patient Name is required
+            </div>
+            <div class="error-message"
+                *ngIf="walkInTouched['name'] && walkIn.name && !hasNumbersInName(walkIn.name) && !isNameValid(walkIn.name)">
+                Name must contain only letters
+            </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="p-field">
+            <label class="label">Phone Number <span class="required-asterisk">*</span></label>
+            <input type="text" pInputText [(ngModel)]="walkIn.phone" placeholder="3000000000"
+                (onBlur)="walkInTouched['phone'] = true" (input)="walkInTouched['phone'] = true"
+                [ngClass]="{'ng-invalid': walkInTouched['phone'] && !isPhoneValid(walkIn.phone)}" />
+            <div class="error-message" *ngIf="walkInTouched['phone'] && !walkIn.phone">
+                Phone Number is required
+            </div>
+            <div class="error-message" *ngIf="walkInTouched['phone'] && walkIn.phone && !isPhoneValid(walkIn.phone)">
+                Phone must contain only digits (minimum 7)
+            </div>
+        </div>
+
+        <!-- Age & Gender Row -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="p-field">
+                <label class="label">Age <span class="required-asterisk">*</span></label>
+                <input type="number" min="1" max="150" pInputText [(ngModel)]="walkIn.age" placeholder="1-150"
+                    (onBlur)="walkInTouched['age'] = true" (input)="walkInTouched['age'] = true"
+                    [ngClass]="{'ng-invalid': walkInTouched['age'] && !isAgeValid(walkIn.age)}" />
+                <div class="error-message" *ngIf="walkInTouched['age'] && !walkIn.age">
+                    Age is required
+                </div>
+                <div class="error-message" *ngIf="walkInTouched['age'] && walkIn.age && !isAgeValid(walkIn.age)">
+                    Age must be 1-150
+                </div>
+            </div>
+            <div class="p-field">
+                <label class="label">Gender <span class="required-asterisk">*</span></label>
+                <p-dropdown [options]="genders" [(ngModel)]="walkIn.gender"
+                    (onChange)="walkInTouched['gender'] = true"></p-dropdown>
+                <div class="error-message" *ngIf="walkInTouched['gender'] && !walkIn.gender">
+                    Gender is required
+                </div>
+            </div>
+        </div>
+
+        <!-- Reason for Visit -->
+        <div class="p-field">
+            <label class="label">Reason for Visit <span class="required-asterisk">*</span></label>
+            <textarea pInputTextarea [(ngModel)]="walkIn.reason" rows="4" style="resize: none;"
+                (onBlur)="walkInTouched['reason'] = true" (input)="walkInTouched['reason'] = true"
+                [ngClass]="{'ng-invalid': walkInTouched['reason'] && !walkIn.reason}"></textarea>
+            <div class="error-message" *ngIf="walkInTouched['reason'] && !walkIn.reason">
+                Reason for Visit is required
+            </div>
+        </div>
+
+        <!-- Payment Status -->
+        <div class="p-field">
+            <label class="label">Payment Status <span class="required-asterisk">*</span></label>
+            <div style="display:flex; gap:1rem; align-items:center;">
+                <label style="display:flex; align-items:center; gap:0.5rem;">
+                    <input type="radio" name="payment" [(ngModel)]="walkIn.paymentStatus" value="paid"
+                        (change)="walkInTouched['paymentStatus']=true">
+                    <span>Paid</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:0.5rem;">
+                    <input type="radio" name="payment" [(ngModel)]="walkIn.paymentStatus" value="unpaid"
+                        (change)="walkInTouched['paymentStatus']=true">
+                    <span>Unpaid</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Special Instructions -->
+        <div class="p-field">
+            <label class="label">Special Notes</label>
+            <textarea pInputTextarea [(ngModel)]="walkIn.specialInstructions" rows="3" style="resize: none;"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+            <button pButton label="Cancel" (click)="showWalkIn=false" class="p-button-secondary"
+                style="flex: 1; border-radius: 8px !important;"></button>
+            <button pButton label="Generate Token" (click)="addWalkIn()" class="walkin-generate-btn"
+                [disabled]="!isNameValid(walkIn.name) || !isAgeValid(walkIn.age) || !walkIn.gender || !walkIn.department || !isPhoneValid(walkIn.phone) || !walkIn.reason"
+                style="flex: 1; border-radius: 8px !important; background: #047857 !important; color: white !important;"></button>
+        </div>
+    </div>
+</p-dialog>

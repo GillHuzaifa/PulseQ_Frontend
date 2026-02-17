@@ -1,0 +1,107 @@
+<div class="page">
+    <p-toast position="top-right"></p-toast>
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <img src="assets/logo.jpeg" alt="PulseQ" class="logo" />
+            <div class="brand">PulseQ</div>
+        </div>
+
+        <nav class="topnav">
+            <a routerLink="/patient/dashboard">Dashboard</a>
+            <a routerLink="/patient/new-token">New Token</a>
+            <a routerLink="/patient/live-status">Live Status</a>
+            <a routerLink="/patient/my-token" class="active">My Token</a>
+            <a routerLink="/patient/history">History</a>
+        </nav>
+
+        <div class="topbar-right">
+            <a pButton type="button" icon="pi pi-bell" class="p-button-text" routerLink="/patient/notifications"
+                aria-label="Notifications"></a>
+            <a routerLink="/patient/profile" class="avatar" title="Profile">
+                <i class="pi pi-user" aria-hidden="true"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="intro">
+            <h1>My Token</h1>
+            <p class="subtitle">Your current token details and status.</p>
+        </div>
+
+        <!-- If token exists -->
+        <div class="token-wrapper" *ngIf="hasActiveToken">
+            <p-card class="token-card">
+                <div class="card-inner">
+                    <!-- Token Section -->
+                    <div class="token-section">
+                        <div class="token-label">YOUR TOKEN NUMBER</div>
+                        <div class="token-number">{{ token?.tokenNumber }}</div>
+                        <span class="status-badge" [ngClass]="'status-badge.' + token?.status">{{ token?.status |
+                            titlecase }}</span>
+                    </div>
+
+                    <!-- information Grid -->
+                    <div class="info-grid">
+                        <div class="info-block">
+                            <div class="info-label"><i class="pi pi-hospital"></i> Hospital</div>
+                            <div class="info-value">{{ token?.hospital }}</div>
+                        </div>
+                        <div class="info-block">
+                            <div class="info-label"><i class="pi pi-stethoscope"></i> Department</div>
+                            <div class="info-value">{{ token?.department }}</div>
+                        </div>
+                        <div class="info-block">
+                            <div class="info-label"><i class="pi pi-user-md"></i> Doctor</div>
+                            <div class="info-value">{{ token?.doctor || 'Any' }}</div>
+                        </div>
+                        <div class="info-block">
+                            <div class="info-label"><i class="pi pi-clock"></i> Estimated Wait</div>
+                            <div class="info-value">{{ token?.estimatedWait }}</div>
+                        </div>
+                    </div>
+
+                    <!-- patient dets  -->
+                    <div class="patient-details mt-3">
+                        <h4>Patient Details</h4>
+                        <div class="detail-row">
+                            <div><strong>Name:</strong> {{ token?.patientName }}</div>
+                            <div><strong>Phone:</strong> {{ token?.patientPhone }}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div><strong>Age:</strong> {{ token?.patientAge || '-' }}</div>
+                            <div><strong>Gender:</strong> {{ token?.patientGender || '-' }}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div><strong>Notes:</strong> {{ token?.specialNotes || 'None' }}</div>
+                        </div>
+                    </div>
+
+                    <!-- visit reason -->
+                    <div class="reason-section mt-3">
+                        <strong>Reason for Visit</strong>
+                        <p class="reason-text">{{ token?.reasonForVisit }}</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button pButton label="Save Ticket" icon="pi pi-download" iconPos="left" (click)="saveTicket()"
+                            class="btn-save"></button>
+                        <button pButton label="Leave Queue" icon="pi pi-times" iconPos="left" (click)="leaveQueue()"
+                            class="btn-leave"></button>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+
+        <!-- If no token -->
+        <div class="no-token-section" *ngIf="!hasActiveToken">
+            <i class="pi pi-inbox no-token-icon"></i>
+            <h2 class="no-token-title">No Active Token</h2>
+            <p class="no-token-text">You don't have an active token. Generate a new token to proceed.</p>
+            <button pButton label="Generate Token" icon="pi pi-plus" iconPos="left" (click)="generateToken()"
+                class="btn-generate"></button>
+        </div>
+    </main>
+    <p-confirmDialog></p-confirmDialog>
+</div>
