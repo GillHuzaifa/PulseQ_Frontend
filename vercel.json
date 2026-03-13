@@ -2,11 +2,5 @@
   "installCommand": "git submodule update --init --recursive && cd pulseQ && npm install",
   "buildCommand": "cd pulseQ && npm run build",
   "outputDirectory": "pulseQ/dist/pulse-q/browser",
-  "framework": "angular",
-  "functions": {
-    "pulseQ/dist/pulse-q/server/server.mjs": {
-      "runtime": "@vercel/node"
-    }
-  },
-  "version": 2
+  "framework": "angular"
 }
