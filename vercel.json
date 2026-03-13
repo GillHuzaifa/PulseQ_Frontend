@@ -7,8 +7,5 @@
     "pulseQ/dist/pulse-q/server/server.mjs": {
       "runtime": "nodejs18.x"
     }
-  },
-  "runtimes": {
-    "nodejs": "18.x"
   }
 }
