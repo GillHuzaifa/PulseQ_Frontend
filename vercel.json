@@ -1,7 +1,7 @@
 {
+  "installCommand": "git submodule update --init --recursive && cd pulseQ && npm install",
   "buildCommand": "cd pulseQ && npm run build",
   "outputDirectory": "pulseQ/dist/pulse-q/browser",
-  "installCommand": "cd pulseQ && npm install",
   "framework": "angular",
   "functions": {
     "pulseQ/dist/pulse-q/server/server.mjs": {
